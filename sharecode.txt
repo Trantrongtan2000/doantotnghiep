@@ -21,3 +21,5 @@ im = cv2.imread('testimage.png')
 cropped = crop_im(im)
 cv2.imshow('', cropped)
 cv2.waitKey(0)
+
+https://stackoverflow.com/questions/66297747/crop-segmented-fruit-inside-a-box-to-get-his-diameter-in-pixels
