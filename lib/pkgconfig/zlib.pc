@@ -1,0 +1,13 @@
+prefix=/home/trongtan/Desktop/bloodtype
+exec_prefix=/home/trongtan/Desktop/bloodtype
+libdir=/home/trongtan/Desktop/bloodtype/lib
+sharedlibdir=/home/trongtan/Desktop/bloodtype/lib
+includedir=/home/trongtan/Desktop/bloodtype/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.12
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}
