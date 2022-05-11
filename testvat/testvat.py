@@ -1,14 +1,14 @@
 import cv2
 import numpy as np
 # read image
-image = cv2.imread('mau3.jpg')
+image = cv2.imread('mau13.jpg')
 img=cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 # get dimensions of image
 blurM = cv2.medianBlur(img, 5)
 edgeM = cv2.Canny(blurM, 100, 200)
 
 blurG = cv2.GaussianBlur(img, (9, 9), 0)
-edgeG = cv2.Canny(blurG, 100, 100)
+edgeG = cv2.Canny(blurG, 50, 100)
 
 img=edgeG
 # height, width, number of channels in image
@@ -22,9 +22,11 @@ print(width)
 crop=img[:,0:int(width/3)]
 crop2=img[:,int(width/3):int(width/3*2)]
 crop3=img[:,int(width/3*2):int(width)]
-'''a1=np.concatenate((crop,crop2,crop3),axis=0)
+'''
+a1=np.concatenate((crop,crop2,crop3),axis=0)
 cv2.imshow('',a1)
-cv2.waitKey(0)'''
+cv2.waitKey(0)
+'''
 
 hist, bin=np.histogram(crop)
 print('')
@@ -46,3 +48,8 @@ print(bin)
 c=hist[-1]
 print('')
 print('%s %s %s'%(a,b,c))
+min=min(a,b,c)
+a1=a-min
+b1=b-min
+c1=c-min
+print('%s %s %s'%(a1,b1,c1))
