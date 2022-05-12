@@ -36,6 +36,14 @@ c2 = cv2.imread('crop2.jpg')
 c3 = cv2.imread('crop3.jpg')
 '''
 
+hist=np.histogram(crop)
+a=hist[-1]
+hist=np.histogram(crop2)
+b=hist[-1]
+hist=np.histogram(crop3)
+c=hist[-1]
+
+
 #Show anwser image
 fig = plt.figure(figsize=(10, 7))
 

@@ -11,9 +11,9 @@ for i in range(2,15):
     edgeM = cv2.Canny(blurM, 100, 200)
 
     blurG = cv2.GaussianBlur(img, (9, 9), 0)
-    edgeG = cv2.Canny(blurG, 50, 100)
+    edgeG = cv2.Canny(blurG, 50, 150)
 
-    img=edgeG
+    img=edgeM
     # height, width, number of channels in image
     height = img.shape[0]
     width = int(img.shape[1])
@@ -33,20 +33,20 @@ for i in range(2,15):
 
     hist, bin=np.histogram(crop)
     print('')
-    print(hist)
-    print('')
+    #print(hist)
+    #print('')
     #print(bin)
     a=hist[-1]
     hist, bin=np.histogram(crop2)
-    print('')
-    print(hist)
-    print('')
+    #print('')
+    #print(hist)
+    #print('')
     #print(bin)
     b=hist[-1]
     hist, bin=np.histogram(crop3)
-    print('')
-    print(hist)
-    print('')
+    #print('')
+    #print(hist)
+    #print('')
     #print(bin)
     c=hist[-1]
     print('')
