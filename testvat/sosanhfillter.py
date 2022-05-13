@@ -102,14 +102,14 @@ for i in range(2,15):
     hist, bin =np.histogram(eG1)
     print('')
     a=hist[-1]
-    taG.append(a)
+    #taG.append(a)
     hist, bin =np.histogram(eG2)
     b=hist[-1]
-    tbG.append(b)
+    #tbG.append(b)
 
     hist, bin =np.histogram(eG3)
     c=hist[-1]
-    tcG.append(c)
+    #tcG.append(c)
 
     print('Fillter G')
     print('%s %s %s'%(a,b,c))
@@ -127,15 +127,10 @@ for i in range(2,15):
     print(np.mean([a1,b1,c1]))
     print('phuong phai di do khum nho ten:')
     print(tong)
-
-    m=min(a,b,c)
-    a1=a-m
-    b1=b-m
-    c1=c-m
-    print('%s %s %s'%(a1,b1,c1))
     taG.append(a1)
     tbG.append(b1)
     tcG.append(c1)
+
 
 print('Cac ket qua trung binh')
 '''
