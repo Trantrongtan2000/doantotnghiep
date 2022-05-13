@@ -49,14 +49,17 @@ for i in range(2,15):
     hist, bin =np.histogram(eM1)
     print('')
     a=hist[-1]
-    taM.append(a)
+
 
     hist, bin =np.histogram(eM2)
     b=hist[-1]
-    tbM.append(b)
+
     hist, bin =np.histogram(eM3)
     c=hist[-1]
-    tcM.append(c)
+
+    #taM.append(a)
+    #tbM.append(b)
+    #tcM.append(c)
 
     print('Fillter M')
     print('%s %s %s'%(a,b,c))
@@ -74,6 +77,16 @@ for i in range(2,15):
     print(np.mean([a1,b1,c1]))
     print('phuong phai di do khum nho ten:')
     print(tong)
+
+    m=min(a,b,c)
+    a1=a-m
+    b1=b-m
+    c1=c-m
+    print('%s %s %s'%(a1,b1,c1))
+    taM.append(a1)
+    tbM.append(b1)
+    tcM.append(c1)
+
     '''
     m=min(a,b,c)
     a1=a-m
@@ -114,6 +127,16 @@ for i in range(2,15):
     print(np.mean([a1,b1,c1]))
     print('phuong phai di do khum nho ten:')
     print(tong)
+
+    m=min(a,b,c)
+    a1=a-m
+    b1=b-m
+    c1=c-m
+    print('%s %s %s'%(a1,b1,c1))
+    taG.append(a1)
+    tbG.append(b1)
+    tcG.append(c1)
+
 print('Cac ket qua trung binh')
 '''
 print('Fillter M')
