@@ -2,7 +2,10 @@ import cv2
 import numpy as np
 
 image = cv2.imread('mau3.jpg')
+
+#image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
 img=cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
 # Fillter
 blurM = cv2.medianBlur(img, 5)
 edgeM = cv2.Canny(blurM, 100, 200)
@@ -42,10 +45,31 @@ def catanh(fillter):
     antiRH=histRH[-1]
     return (antiA,antiB,antiRH)
 
+def xetnhommau(a,b,rh):
+    if a == True:
+        if b == True:
+            if rh == True:
+                nm='AB+'
+            else:
+                nm='AB-'
+        else:
+            if rh == True:
+                nm='A+'
+            else:
+                nm='A-'
+    else:
+        if B == True:
+            if rh== True:
+                nm='B+'
+            else:
+                nm='B-'
+        else:
+            if rh == True:
+                nm = 'O+'
+            else:
+                nm= 'O-'
+    return print('Nhom mau: '+nm)
 AM,BM,RHM=catanh(edgeM)
 AG, BG,RHG=catanh(edgeG)
-print(AM)
-print(BM)
-print(RHM)
 
-print(catanh(edgeG))
+xetnhommau(True,False,False)
