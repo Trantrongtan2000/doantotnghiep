@@ -1,8 +1,49 @@
 # Khai bao thu vien
 import cv2
 import numpy as np
+# Nhap mau
+nhapmau= input('Vui long nhap mau mau: ')
+#nhapmau='12'
+mau = 'mau'+nhapmau + '.jpg'
+print('\nBan da nhap mau mau: '+nhapmau)
 
-# Ham xu li
+# Doc anh
+image = cv2.imread(mau)
+
+# Bien doi anh sang anh xam
+img=cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# Fillter
+blurM = cv2.medianBlur(img, 5)
+edgeM = cv2.Canny(blurM, 100, 200)
+
+blurG = cv2.GaussianBlur(img, (9, 9), 0)
+edgeG = cv2.Canny(blurG, 50, 150)
+
+blurM2 = cv2.medianBlur(img, 5)
+edgeM2 = cv2.Canny(blurM2, 10, 150)
+
+blurG2 = cv2.GaussianBlur(img, (9, 9), 0)
+edgeG2 = cv2.Canny(blurG2, 10, 100)
+
+'''
+# width in image
+
+widthM = int(edgeM.shape[1])
+
+#img[start row, end row, start col and col]
+AM=img[:,0:int(widthM/3)]
+BM=img[:,int(widthM/3):int(widthM/3*2)]
+RHM=img[:,int(widthM/3*2):int(widthM)]
+
+widthG = int(edgeG.shape[1])
+
+#img[start row, end row, start col and col]
+AG=img[:,0:int(widthG/3)]
+BG=img[:,int(widthG/3):int(widthG/3*2)]
+RHG=img[:,int(widthG/3*2):int(widthG)]
+'''
+
 def catanh(fillter):
     width= int(fillter.shape[1])
     A = fillter[:, 0:int(width / 3)]
@@ -42,41 +83,12 @@ def xetnhommau(a,b,rh):
                 nm= 'O-'
     return print('Nhom mau: '+nm)
 
-# Nhap mau
-nhapmau= input('Vui long nhap mau mau: ')
-#nhapmau='12'
-mau = 'mau'+nhapmau + '.jpg'
-print('\nBan da nhap mau mau: '+nhapmau)
-
-# Doc anh
-image = cv2.imread(mau)
-
-# Bien doi anh sang anh xam
-img=cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
-# Fillter
-blurM = cv2.medianBlur(img, 5)
-edgeM = cv2.Canny(blurM, 100, 200)
-
-blurG = cv2.GaussianBlur(img, (9, 9), 0)
-edgeG = cv2.Canny(blurG, 50, 150)
-
-blurM2 = cv2.medianBlur(img, 5)
-edgeM2 = cv2.Canny(blurM2, 10, 150)
-
-blurG2 = cv2.GaussianBlur(img, (9, 9), 0)
-edgeG2 = cv2.Canny(blurG2, 10, 100)
-
-# Khai bao list, dem
 check=[]
 demM=0
 demG=0
-
-# Cat anh
 AM,BM,RHM=catanh(edgeM)
 AG, BG,RHG=catanh(edgeG)
 
-# Su dung fillter va lau histogram
 fillM=catanh(edgeM)
 fillG=catanh(edgeG)
 
@@ -84,7 +96,6 @@ fillM2=catanh(edgeM2)
 fillG2=catanh(edgeG2)
 AG2, BG2,RHG2=catanh(edgeG2)
 
-# Dieu kien
 if AM > 200 and BM > 200 and RHM > 200 and AG > 200 and BG > 200 and RHG > 200: #Xet tat ca duong
   if AM > 300 and AG > 300 and abs(AM-AG) >10:
       check.append(True)
@@ -132,6 +143,22 @@ else:
 
         else:
             check.append(True)
+
+        '''
+        count=0
+        for t in fillM:
+            for i in fillG:
+                if i != 0 and t == 0:
+                    check.append(False)
+                    if t == fillM[count]:
+                        count += 1
+                        break
+                else:
+                    check.append(True)
+                    if t == fillM[count]:
+                        count+=1
+                        break
+        '''
     else:
         for i in fillG2:
             if AG2 < 100 and BG2 < 100 and RHG2 < 100:
@@ -144,5 +171,17 @@ else:
                     check.append(False)
                 else:
                     check.append(True)
-# Ket qua
+
 xetnhommau(check[0], check[1], check[2])
+
+'''
+them=0
+for t in fillM:
+    for i in fillG:
+        print(i)
+        print(t)
+        if t == fillM[them]:
+            them += 1
+            break
+'''
+
