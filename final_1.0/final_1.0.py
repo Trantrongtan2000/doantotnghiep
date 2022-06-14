@@ -61,8 +61,8 @@ edgeM = cv2.Canny(blurM, 100, 200)
 blurG = cv2.GaussianBlur(img, (9, 9), 0)
 edgeG = cv2.Canny(blurG, 50, 150)
 
-blurM2 = cv2.medianBlur(img, 5)
-edgeM2 = cv2.Canny(blurM2, 10, 150)
+#blurM2 = cv2.medianBlur(img, 5)
+#edgeM2 = cv2.Canny(blurM2, 10, 150)
 
 blurG2 = cv2.GaussianBlur(img, (9, 9), 0)
 edgeG2 = cv2.Canny(blurG2, 10, 100)
