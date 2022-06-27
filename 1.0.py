@@ -7,7 +7,6 @@ from PIL import ImageTk,Image
 from tkinter import filedialog
 import tkinter as tk
 
-
 def catanh(fillter):
         width= int(fillter.shape[1])
         A = fillter[:, 0:int(width / 3)]
@@ -48,15 +47,20 @@ def xetnhommau(a,b,rh):
     return print('Nhom mau: '+nm)
 
 
+
 def myClick():
     root.filename = filedialog.askopenfilename(initialdir="C:", title="Select A File", filetypes=(("jpg files", "*.jpg"),("all files", "*.*")))
     my_label = Label(root, text = root.filename)
-    # phần này cần convert
-    pic = Image.open(root.filename)
+    pic = Image.open(root.filename) 
+    pic.thumbnail((350,350))
+    pic = ImageTk.PhotoImage(pic)
+    pic_label1.configure(image=pic)
+    pic_label1.image = pic
+    root.mainloop()
+def analyze():      
     image = cv2.imread(root.filename)
-
-    img=cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    blurM = cv2.medianBlur(img, 5)
+    img = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+    blurM = cv2.medianBlur(img, 5)  
     edgeM = cv2.Canny(blurM, 100, 200)
 
     blurG = cv2.GaussianBlur(img, (9, 9), 0)
@@ -143,23 +147,25 @@ def myClick():
                             check.append(True)
         # Ket qua
     xetnhommau(check[0], check[1], check[2])
-
-
-
-    pic.thumbnail((350,350))
-    pic = ImageTk.PhotoImage(pic)
-    pic_label1.configure(image=pic)
-    pic_label1.image = pic
     root.mainloop()
+
+
+
+    
+
     
 
 root = Tk() 
 root.title('Nén và cắt ảnh')
+
+
 myButton = Button(root, text="Open",padx=20, pady=10 , command=myClick)
 button_quit = Button(root, text="ExitProgram",padx=20, pady=10 , command=root.quit)
 pic_label1 = Label(root)
 pic_label1.grid(row=5, column=0)
+button_crop1 = Button(root, text="analyze",padx=20, pady=10 , command=analyze)
 
 myButton.grid(row=1, column=0)
+button_crop1.grid(row=2, column=0)
 button_quit.grid(row=4, column=0)
 root.mainloop()

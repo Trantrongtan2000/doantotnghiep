@@ -8,8 +8,8 @@ ten=input('Nhap vo may: ')
 tenfile=ten+'.jpg'
 
 image = cv2.imread(tenfile)
-os.mkdir(ten)
-os.chdir(ten)
+os.mkdir('mau001')
+os.chdir('mau001')
 
 # convert to gray scale image
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
