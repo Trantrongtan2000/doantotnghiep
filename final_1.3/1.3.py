@@ -9,12 +9,14 @@ import tempfile
 from PIL import ImageTk,Image
 from tkinter import filedialog
 import tkinter as tk
-
+from cv2 import *
+import time
+import os
 
 
 root = Tk() 
 root.title('Xét nghiệm nhóm máu')
-root.geometry('400x210')
+root.geometry('600x210')
 
 
 def catanh(fillter):
@@ -45,6 +47,9 @@ def myClick():
     pic_label1.image = pic
     root.mainloop()
 def analyze():
+    localtime = time.localtime()
+    now = time.strftime("%d_%m_%Y_%H_%M_%S", localtime)
+    basename=os.path.basename(root.filename)
     image = cv2.imread(root.filename)
     img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     blurM = cv2.medianBlur(img, 5)  
@@ -58,6 +63,15 @@ def analyze():
 
     blurG2 = cv2.GaussianBlur(img, (9, 9), 0)
     edgeG2 = cv2.Canny(blurG2, 10, 100)
+    os.system('mkdir %s'%now)
+    cv2.imwrite('%s/%s_%s_gray.jpg'%(now,basename,now), img)
+    cv2.imwrite('%s/%s_%s_blurM.jpg' % (now,basename,now), blurM)
+    cv2.imwrite('%s/%s_%s_edgeM.jpg' % (now,basename,now), edgeM)
+    cv2.imwrite('%s/%s_%s_blurG.jpg' % (now,basename,now), blurG)
+    cv2.imwrite('%s/%s_%s_edgeG.jpg' % (now,basename,now), edgeG)
+    cv2.imwrite('%s/%s_%s_blurG2.jpg' % (now,basename,now), blurG2)
+    cv2.imwrite('%s/%s_%s_edgeG2.jpg' % (now,basename,now), edgeG2)
+    cv2.imwrite('%s/%s_%s_blurM2.jpg' % (now,basename,now), blurM2)
 
     check=[]
     demM=0
@@ -137,6 +151,14 @@ def analyze():
 
     root.mainloop()
 
+def snap():
+    cam = VideoCapture(0)  # 0 -> index of camera
+    s, img = cam.read()
+    localtime = time.localtime()
+    now = time.strftime("%d_%m_%Y_%H_%M_%S", localtime)
+    os.system('mkdir %s' % now)
+    imwrite("%s/%s.jpg" % (now, now), img)
+    return None
 
 def xetnhommau(a,b,rh):
     entry1.delete(0, END)
@@ -178,14 +200,16 @@ myButton = Button(root, text="Open",padx=40, pady=20 , command=myClick)
 button_quit = Button(root, text="ExitProgram",padx=40, pady=20 , command=root.quit)
 pic_label1 = Label(root)
 button_analyze = Button(root, text="Analyze",padx=40, pady=20 , command=analyze)
+button_snap = Button(root, text="Snap",padx=40, pady=20 , command=snap)
 entry1=Entry(root,width=5, borderwidth= 3)
 
 
 
 
-pic_label1.grid(row=0, column=0, columnspan= 3,)
+pic_label1.grid(row=0, column=0, columnspan= 4,)
 entry1.grid(row=2, column=0, columnspan=3)
 myButton.grid(row=1, column=0)
 button_analyze.grid(row=1, column=1)
+button_snap.grid(row=1, column=3)
 button_quit.grid(row=1, column=2)
 root.mainloop()
