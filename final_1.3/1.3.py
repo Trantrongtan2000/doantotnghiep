@@ -109,8 +109,8 @@ def analyze():
                     demG += 1
             if demM == 1 and demG == 1:
                 count=0
-                for t in fillM:
-                    for i in fillG:
+                for i in fillG:
+                    for t in fillM:
                         if t == 0 and i == 0:
                             check.append(False)
                         elif t > 100 and i > 100:

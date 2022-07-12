@@ -43,8 +43,8 @@ def xetnhommau(a,b,rh):
     return print('Nhom mau: '+nm)
 
 # Nhap mau
-nhapmau= input('Vui long nhap mau mau: ')
-#nhapmau='12'
+#nhapmau= input('Vui long nhap mau mau: ')
+nhapmau='1341'
 mau = 'mau'+nhapmau + '.jpg'
 print('\nBan da nhap mau mau: '+nhapmau)
 
@@ -80,8 +80,9 @@ AG, BG,RHG=catanh(edgeG)
 fillM=catanh(edgeM)
 fillG=catanh(edgeG)
 
-fillM2=catanh(edgeM2)
+#fillM2=catanh(edgeM2)
 fillG2=catanh(edgeG2)
+
 AG2, BG2,RHG2=catanh(edgeG2)
 
 # Dieu kien
@@ -123,6 +124,7 @@ else:
             check.append(False)
         else:
             check.append(True)
+
         if BM == 0 or BG == 0:
             check.append(False)
         else:
@@ -137,12 +139,16 @@ else:
             if AG2 < 100 and BG2 < 100 and RHG2 < 100:
                 if i>0:
                     check.append(True)
+
                 else:
                     check.append(False)
             else:
                 if i<100:
                     check.append(False)
                 else:
+                    print('done')
                     check.append(True)
 # Ket qua
 xetnhommau(check[0], check[1], check[2])
+
+print(check)

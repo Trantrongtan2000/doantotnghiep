@@ -15,7 +15,7 @@ def catanh(fillter):
     histRH, bin = np.histogram(RH)
     antiRH=histRH[-1]
     return (antiA,antiB,antiRH)
-
+'''
 for i in range(2,15):
     image = cv2.imread('mau'+str(i)+'.jpg')
     print('\nAnh mau: '+str(i))
@@ -42,4 +42,3 @@ edgeG = cv2.Canny(blurG, 10, 100)
 
 print(catanh(edgeM))
 print(catanh(edgeG))
-'''
