@@ -137,14 +137,17 @@ def analyze():
             else:
                 for i in fillG2:
                     if AG2 < 100 and BG2 < 100 and RHG2 < 100:
-                        if i>0:
+                        if i > 0:
                             check.append(True)
                         else:
                             check.append(False)
+                    elif i > 1000:
+                        check.append(True)
                     else:
-                        if i<100:
+                        if i < 550:
                             check.append(False)
                         else:
+                            print('done')
                             check.append(True)
         # Ket qua
     xetnhommau(check[0], check[1], check[2])
