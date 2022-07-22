@@ -44,7 +44,7 @@ def xetnhommau(a,b,rh):
 
 # Nhap mau
 #nhapmau= input('Vui long nhap mau mau: ')
-nhapmau='1341'
+nhapmau='1'
 mau = 'mau'+nhapmau + '.jpg'
 print('\nBan da nhap mau mau: '+nhapmau)
 

@@ -193,6 +193,3 @@ c3=hist[-1]
 
 print('Fillter G2')
 print('%s %s %s'%(a3,b3,c3))
-
-0 520 53
-0 121 0
