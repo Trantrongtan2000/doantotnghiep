@@ -1,4 +1,5 @@
 # ĐỒ ÁN TỐT NGHIỆP NGÀNH KỸ THUẬT Y SINH - ĐẠI HỌC CÔNG NGHỆ TP.HCM (2022 )
+## Đề tài: Chương trình phân loại nhóm máu
 ## Sinh viên thực hiện: 
 - ### Trần Trọng Tấn
 - ### Nguyễn Đức Tuấn
